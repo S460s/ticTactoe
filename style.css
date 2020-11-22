@@ -1,0 +1,17 @@
+
+main{
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  margin-top: 20vh;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  border: 2px black solid;
+}
+
+#square{
+  border: 2px black solid;
+  display: grid;
+  justify-content: center;
+  font-size: 100px;
+}
