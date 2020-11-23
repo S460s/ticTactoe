@@ -4,41 +4,52 @@ const GameBoard = (() => {
   let squares = document.querySelectorAll("#square")
   let gameboard = ["", "", "", "", "", "", "", "", ""]
 
-  const displayBoard = () => {
-    let i = 0
-    squares.forEach(square => {
-      square.textContent = gameboard[i]
-      i++
-    })
-  }
-
-
-  return { displayBoard, gameboard, squares }
+  return { gameboard, squares }
 })()
+
 
 
 const Player = (sign, gameboard, squares) => {
   // Player Constructor Object
 
-  const play = () => {
+  const removeElistener = () => {
     squares.forEach(square => {
-      console.log(squares.value);
-      square.addEventListener("click", () => {
-        square.textContent = sign
-        console.log(square.value);
-        gameboard[square.value] = sign
-        console.log(gameboard)
-      })
+      square.removeEventListener("click", playEvent)
     })
   }
-  return { play }
+
+  const playEvent = function (e) {
+    if (e.target.textContent !== "X" && e.target.textContent !== "O") {
+      gameboard[e.target.getAttribute("name")] = sign
+      e.target.textContent = sign
+      removeElistener()
+      play()
+    }
+  }
+
+  const play = () => {
+    squares.forEach(square => {
+      square.addEventListener("click", playEvent)
+    })
+  }
+  return { play, }
 }
 
-const GameFlow = () => {
+
+const GameFlow = (() => {
   // GameFlow Constructor Function
-}
+  const playerX = Player("X", GameBoard.gameboard, GameBoard.squares)
+  const playerO = Player("O", GameBoard.gameboard, GameBoard.squares)
 
-GameBoard.displayBoard()
 
-const playerO = Player("O", GameBoard.gameboard, GameBoard.squares)
-playerO.play()
+  const game = function () {
+    playerX.play()
+    playerO.play()
+  }
+
+  return { game }
+})()
+
+GameFlow.game()
+
+console.log("tets");

@@ -1,17 +1,19 @@
 
 main{
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   margin: auto;
   margin-top: 20vh;
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3, 200px);
   border: 2px black solid;
 }
 
 #square{
   border: 2px black solid;
-  display: grid;
+  display: flex;
   justify-content: center;
-  font-size: 100px;
+  align-items: center;
+  font-size: 50px;
 }
