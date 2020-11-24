@@ -1,12 +1,37 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+
+h1{
+  padding-top: 0px;
+  text-align: center;
+  font-size: 10vh;
+}
+
 main{
-  width: 600px;
-  height: 600px;
+  width: 60vh;
+  height: 60vh;
   margin: auto;
-  margin-top: 20vh;
+  margin-top: 10vh;
   display: grid;
-  grid-template-columns: repeat(3, 200px);
-  grid-template-rows: repeat(3, 200px);
+  grid-template-columns: repeat(3, 20vh);
+  grid-template-rows: repeat(3, 20vh);
   border: 2px black solid;
+}
+
+#playAgain{
+  display: block;
+  padding: 2vh 10vh 2vh 10vh;
+  margin: auto;
+  margin-top: 1vh;
+}
+
+#winMsg{
+  text-align: center;
+  font-size: xx-large;
+  
 }
 
 #square{
