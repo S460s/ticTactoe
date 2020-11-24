@@ -1,5 +1,3 @@
-
-
 const GameBoard = (function () {
   let gameBoardArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   let squares = document.querySelectorAll("#square")
@@ -41,11 +39,11 @@ const Player = function (sign) {
 }
 
 const GameFlow = (function () {
-  let winMsg = document.getElementById("winMsg")
-  let playAgainButton = document.getElementById("playAgain")
+  const winMsg = document.getElementById("winMsg")
+  const playAgainButton = document.getElementById("playAgain")
   const playerX = Player("x")
   const playerO = Player("o")
-  const checkWinner = function (sign) {
+  const checkWinner = function (sign = "z") {
     let strBoard = GameBoard.gameBoardArray.join("")
     const re1 = RegExp(`${sign}..${sign}..${sign}`)
     const re2 = RegExp(`${sign}...${sign}...${sign}`)
@@ -56,7 +54,7 @@ const GameFlow = (function () {
     if (re1.test(strBoard) || re2.test(strBoard) || re3.test(strBoard) || re4 || re5 || re6) {
       return "win";
     }
-    else if (!strBoard.includes(" ")) {
+    else if (!GameBoard.gameBoardArray.includes(" ")) {
       return "Tie"
     }
     else {
@@ -64,6 +62,9 @@ const GameFlow = (function () {
     }
   }
   const game = function () {
+    if (checkWinner() === "Tie") {
+      winMsg.textContent = "Tie!"
+    }
     playerO.play()
     if (checkWinner("o") === "win") {
       winMsg.textContent = "Player with Os win!"
@@ -78,9 +79,6 @@ const GameFlow = (function () {
         playerO.removeElistener()
       }
     }
-    if (checkWinner("x")) {
-      winMsg.textContent = "Tie"
-    }
   }
   const playAgain = function () {
     playAgainButton.addEventListener("click", function () {
@@ -92,7 +90,6 @@ const GameFlow = (function () {
       game()
     })
   }
-
   return { game, playAgain }
 })()
 
