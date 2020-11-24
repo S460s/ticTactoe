@@ -1,7 +1,7 @@
 
 
 const GameBoard = (function () {
-  let gameBoardArray = ["", "", "", "", "", "", "", "", ""]
+  let gameBoardArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   let squares = document.querySelectorAll("#square")
 
   const displayBoard = function () {
@@ -28,7 +28,10 @@ const Player = function (sign) {
       GameBoard.gameBoardArray[e.target.getAttribute("name")] = sign
       GameBoard.displayBoard()
       removeElistener()
+
+
       GameFlow.game()
+
     }
   }
 
@@ -38,7 +41,7 @@ const Player = function (sign) {
     })
   }
 
-  return { play, }
+  return { play, removeElistener }
 }
 
 const GameFlow = (function () {
@@ -56,10 +59,10 @@ const GameFlow = (function () {
     const re6 = strBoard.slice(6, 9) == `${sign}${sign}${sign}`
 
     if (re1.test(strBoard) || re2.test(strBoard) || re3.test(strBoard) || re4 || re5 || re6) {
-      console.log(`Player with ${sign}s win.`);
+      return true;
     }
-    else if (!strBoard.includes("")) {
-      console.log("Tie");
+    else if (!strBoard.includes(" ")) {
+      return "Tie"
     }
     else {
       return false
@@ -67,9 +70,20 @@ const GameFlow = (function () {
   }
 
   const game = function () {
-    console.log("hello");
     playerO.play()
-    playerX.play()
+    if (checkWinner("o")) {
+      console.log("Congrats! Player with Os wins!");
+      playerX.removeElistener()
+      playerO.removeElistener()
+    }
+    else {
+      playerX.play()
+      if (checkWinner("x")) {
+        console.log("Congrats! Player with Xs wins!");
+        playerX.removeElistener()
+        playerO.removeElistener()
+      }
+    }
   }
 
   return { game }
