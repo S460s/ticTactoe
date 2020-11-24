@@ -1,27 +1,8 @@
+
+
 const GameBoard = (function () {
   let gameBoardArray = ["", "", "", "", "", "", "", "", ""]
   let squares = document.querySelectorAll("#square")
-
-  const removeElistener = function () {
-    console.log("test");
-    squares.forEach(function (square) {
-      square.removeEventListener("click", playEvent)
-    })
-  }
-
-  const playEvent = function (sign, event) {
-    console.log(`event ->  ${event} ; sign -> ${sign}`);
-    console.log(event.target);
-
-    gameBoardArray[event.target.getAttribute("name")] = sign
-    displayBoard()
-  }
-
-  const play = function (sign) {
-    squares.forEach(function (square) {
-      square.addEventListener("click", playEvent.bind(event, sign))
-    })
-  }
 
   const displayBoard = function () {
     squares.forEach(function (square) {
@@ -29,18 +10,69 @@ const GameBoard = (function () {
     })
   }
 
-  return { play }
+  return { displayBoard, gameBoardArray, squares }
 })()
 
 
-const Player = function () {
+const Player = function (sign) {
 
-  return {}
+  const removeElistener = () => {
+    GameBoard.squares.forEach(square => {
+      square.removeEventListener("click", playEvent)
+    })
+  }
+
+  const playEvent = function (e) {
+    if (e.target.textContent !== "x" && e.target.textContent !== "o") {
+      console.log(`e ->  ${e} ; sign -> ${sign}`);
+      GameBoard.gameBoardArray[e.target.getAttribute("name")] = sign
+      GameBoard.displayBoard()
+      removeElistener()
+      GameFlow.game()
+    }
+  }
+
+  const play = function () {
+    GameBoard.squares.forEach(function (square) {
+      square.addEventListener("click", playEvent)
+    })
+  }
+
+  return { play, }
 }
 
 const GameFlow = (function () {
 
-  return {}
+  const playerX = Player("x")
+  const playerO = Player("o")
+
+  const checkWinner = function (sign) {
+    let strBoard = GameBoard.gameBoardArray.join("")
+    const re1 = RegExp(`${sign}..${sign}..${sign}`)
+    const re2 = RegExp(`${sign}...${sign}...${sign}`)
+    const re3 = RegExp(`..${sign}.${sign}.${sign}..`)
+    const re4 = strBoard.slice(3, 6) == `${sign}${sign}${sign}`
+    const re5 = strBoard.slice(0, 3) == `${sign}${sign}${sign}`
+    const re6 = strBoard.slice(6, 9) == `${sign}${sign}${sign}`
+
+    if (re1.test(strBoard) || re2.test(strBoard) || re3.test(strBoard) || re4 || re5 || re6) {
+      console.log(`Player with ${sign}s win.`);
+    }
+    else if (!strBoard.includes("")) {
+      console.log("Tie");
+    }
+    else {
+      return false
+    }
+  }
+
+  const game = function () {
+    console.log("hello");
+    playerO.play()
+    playerX.play()
+  }
+
+  return { game }
 })()
 
-GameBoard.play("o")
+GameFlow.game()
