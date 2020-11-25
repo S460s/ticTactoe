@@ -25,7 +25,8 @@ main{
   display: grid;
   grid-template-columns: repeat(3, 20vh);
   grid-template-rows: repeat(3, 20vh);
-  border: 2px black solid;
+  border: 2.5px double black;
+
 }
 
 .board{
@@ -37,7 +38,7 @@ main{
   display: block;
   padding: 2vh 10vh 2vh 10vh;
   margin: auto;
-  margin-top: 5vh;
+  margin-top: 7vh;
   border-radius: 15px;
   border: none;
   outline: none;
@@ -66,7 +67,7 @@ main{
   justify-content: center;
   align-items: center;
   font-size: 1vh;
-  transition: 0.5s ease-in-out;
+  transition:  1.5s ease-in-out;
 }
 
 
