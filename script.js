@@ -67,12 +67,15 @@ const GameFlow = (function () {
   const game = function () {
     if (checkWinner() === "Tie") {
       winMsg.textContent = "Tie!"
+      winMsg.style.cssText = "transform: scale(1.2,1.2);"
     }
     playerX.play()
     if (checkWinner("x") === "win") {
       winMsg.textContent = "Player with Xs win!"
       playerX.removeElistener()
       playerO.removeElistener()
+      winMsg.style.cssText = "transform: scale(1.2,1.2);"
+
     }
     else {
       playerO.play()
@@ -80,6 +83,7 @@ const GameFlow = (function () {
         winMsg.textContent = "Player with Os win!"
         playerX.removeElistener()
         playerO.removeElistener()
+        winMsg.style.cssText = "transform: scale(1.2,1.2);"
       }
     }
   }
@@ -94,6 +98,7 @@ const GameFlow = (function () {
       GameBoard.squares.forEach(function (square) {
         square.style.cssText = ""
       })
+      winMsg.style.cssText = ""
 
       game()
     })

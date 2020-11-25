@@ -50,6 +50,7 @@ main{
 #winMsg{
   text-align: center;
   font-size: 5vh;
+  transition: 1s ease-in-out;
 }
 
 #square{
@@ -63,3 +64,5 @@ main{
 #square:active{
   transform: scale(1.2,1.2);
 }
+
+
