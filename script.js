@@ -24,6 +24,7 @@ const Player = function (sign) {
     if (e.target.textContent !== "x" && e.target.textContent !== "o") {
       GameBoard.gameBoardArray[e.target.getAttribute("name")] = sign
       GameBoard.displayBoard()
+      e.target.style.cssText = "font-size: 20vh"
       removeElistener()
       GameFlow.game()
     }
@@ -43,6 +44,7 @@ const GameFlow = (function () {
   const playAgainButton = document.getElementById("playAgain")
   const playerX = Player("x")
   const playerO = Player("o")
+
   const checkWinner = function (sign = "z") {
     let strBoard = GameBoard.gameBoardArray.join("")
     const re1 = RegExp(`${sign}..${sign}..${sign}`)
@@ -61,20 +63,21 @@ const GameFlow = (function () {
       return false
     }
   }
+
   const game = function () {
     if (checkWinner() === "Tie") {
       winMsg.textContent = "Tie!"
     }
-    playerO.play()
-    if (checkWinner("o") === "win") {
-      winMsg.textContent = "Player with Os win!"
+    playerX.play()
+    if (checkWinner("x") === "win") {
+      winMsg.textContent = "Player with Xs win!"
       playerX.removeElistener()
       playerO.removeElistener()
     }
     else {
-      playerX.play()
-      if (checkWinner("x") === "win") {
-        winMsg.textContent = "Player with Xs win!"
+      playerO.play()
+      if (checkWinner("o") === "win") {
+        winMsg.textContent = "Player with Os win!"
         playerX.removeElistener()
         playerO.removeElistener()
       }
@@ -87,6 +90,11 @@ const GameFlow = (function () {
       }
       GameBoard.displayBoard()
       winMsg.textContent = ""
+
+      GameBoard.squares.forEach(function (square) {
+        square.style.cssText = ""
+      })
+
       game()
     })
   }

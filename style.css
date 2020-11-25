@@ -3,18 +3,23 @@
   margin: 0;
 }
 
+body{
+  font-family: 'Indie Flower', cursive;
+}
 
 h1{
   padding-top: 0px;
   text-align: center;
   font-size: 10vh;
+  transition: 1.5s ease-in-out;
+  transform: rotate(360deg);
 }
 
 main{
   width: 60vh;
   height: 60vh;
   margin: auto;
-  margin-top: 10vh;
+  margin-top: 5vh;
   display: grid;
   grid-template-columns: repeat(3, 20vh);
   grid-template-rows: repeat(3, 20vh);
@@ -26,12 +31,25 @@ main{
   padding: 2vh 10vh 2vh 10vh;
   margin: auto;
   margin-top: 1vh;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  box-shadow: 0 9px #999;
+}
+
+#playAgain:hover{
+  background-color: rgb(201, 201, 201);
+}
+
+#playAgain:active{
+  background-color: rgb(168, 168, 168);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 #winMsg{
   text-align: center;
-  font-size: xx-large;
-  
+  font-size: 5vh;
 }
 
 #square{
@@ -39,5 +57,9 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
+  font-size: 1vh;
+  transition: 0.5s ease-in-out;
+}
+#square:active{
+  transform: scale(1.2,1.2);
 }
