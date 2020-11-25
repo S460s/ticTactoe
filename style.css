@@ -68,8 +68,5 @@ main{
   font-size: 1vh;
   transition: 0.5s ease-in-out;
 }
-#square:active{
-  transform: scale(1.2,1.2);
-}
 
 
