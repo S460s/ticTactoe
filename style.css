@@ -8,9 +8,11 @@ body{
 }
 
 h1{
-  padding-top: 0px;
+  margin-top: 0px;
   text-align: center;
   font-size: 10vh;
+}
+.title{
   transition: 1.5s ease-in-out;
   transform: rotate(360deg);
 }
@@ -19,18 +21,23 @@ main{
   width: 60vh;
   height: 60vh;
   margin: auto;
-  margin-top: 5vh;
+  margin-top: 0px;
   display: grid;
   grid-template-columns: repeat(3, 20vh);
   grid-template-rows: repeat(3, 20vh);
   border: 2px black solid;
 }
 
+.board{
+  transition: 1.5s ease-in-out;
+  transform: translateY(3vh);
+}
+
 #playAgain{
   display: block;
   padding: 2vh 10vh 2vh 10vh;
   margin: auto;
-  margin-top: 1vh;
+  margin-top: 5vh;
   border-radius: 15px;
   border: none;
   outline: none;

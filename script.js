@@ -106,5 +106,10 @@ const GameFlow = (function () {
   return { game, playAgain }
 })()
 
+window.onload = function () {
+  document.querySelector("main").classList.add("board")
+  document.querySelector("h1").classList.add("title")
+}
+
 GameFlow.playAgain()
 GameFlow.game()
